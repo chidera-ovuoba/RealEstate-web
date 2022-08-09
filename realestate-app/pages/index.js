@@ -29,18 +29,19 @@ const Banner = ({ purpose, title1, title2, desc1, desc2, buttonText, imageUrl, l
 }
 
 var page = 0 
- async function setPage(num) {
-  page = num;
-  // console.log(page);
-}
+
 
 
 export default function Home({ propertiesForRent, propertiesForSale }) {
   const router = useRouter();
-  
- function refreshData() {
-    router.replace(router.asPath);
-  }
+//   const [page, setPage] = useState(router.query.page);
+//   function setPageNum(num) {
+//     const { query } = router;
+//     // console.log(query)
+//     query.page = num;
+//   // console.log(router.);
+//     router.replace({ pathname: router.pathname,query});
+// }
 
  
   return (
@@ -66,26 +67,26 @@ export default function Home({ propertiesForRent, propertiesForSale }) {
             propertiesForRent?.map((property) => <Property key={property.id} property={property} />)
         }
       </Flex>
-      <Flex m='4' alignItems='center' justifyContent='center' gap='2'>
+     {/* <Flex m='4' alignItems='center' justifyContent='center' gap='2'>
         <Button onClick={()=>{
-          setPage(0)
-           refreshData()
-        }}>1</Button>
+          setPageNum(page < 3 ? page : page - 1)
+  
+        }}>{page < 3 ? page + 1:page}</Button>
         <Button onClick={() =>{
-           setPage(1)
-              refreshData()
-          }}>2</Button>
+           setPageNum(page < 3 ? page + 1 : page)
+    
+          }}>{page < 3 ? page + 2: page + 1}</Button>
         <Button onClick={() =>{
-           setPage(2)
-              refreshData()
-          }}>3</Button>
+           setPageNum(page < 3 ? page + 2: page + 1)
+    
+          }}>{page < 3 ? page + 3: page + 2}</Button>
         ....
         <Button onClick={()=>{
-          setPage(1999)
-           refreshData()
+          setPageNum(1999)
+  
         }}>2000</Button>
       
-      </Flex>
+      </Flex>*/}
       
         <Banner
         purpose='BUY A HOME'
@@ -110,10 +111,10 @@ export default function Home({ propertiesForRent, propertiesForSale }) {
       </div>
       )
 }
-export async function getServerSideProps() {
+// console.log(page);
+export async function getServerSideProps({query}) {
   const propertyForSale = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-sale&hitsPerPage=25`)
-  const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=25&page=${page}`);
-  console.log(page);
+  const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=25&page=${query.page || 0}`);
   return {
     props: {
       propertiesForSale: propertyForSale?.hits || null,

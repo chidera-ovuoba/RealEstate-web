@@ -15,6 +15,7 @@ const Search = ({properties}) => {
         <Box>
             <Flex
                 cursor='pointer'
+
                 bg='gray.100'
                 borderBottom='2px'
                 borderColor='gray.200'
@@ -47,13 +48,29 @@ const Search = ({properties}) => {
 }
 
 export async function getServerSideProps({ query }) {
+    const purpose = query.purpose || 'for-rent';
+    const rentFrequency = query.rentFrequency || 'yearly';
+    const minPrice = query.minPrice || '0';
+    const maxPrice = query.maxPrice || '1000000';
+    const roomsMin = query.roomsMin || '0';
+    const bathsMin = query.bathsMin || '0';
+    const roomsMax = query.roomsMax || '10';
+    const bathsMax = query.bathsMax || '10';
+    const sort = query.sort || 'price-desc';
+    const areaMax = query.areaMax || '35000';
+    const areaMin = query.areaMin || '1000';
+    const locationExternalIDs = query.locationExternalIDs ||'5002'
+    const categoryExternalIDs = query.categoryExternalIDs || '4';
+    const hasVideo = query.hasVideo || false;
+    const hasFloorPlan = query.hasFloorPlan || false;
+    const hasPanorama = query.hasPanorama || false;
+    const furnishingStatus = query.furnishingStatus || 'furnished'
     
-  const properties = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=${query.purpose}&hitsPerPage=25`)
-//   const propertyForRent = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=5002&purpose=for-rent&hitsPerPage=25`);
+  const properties = await fetchApi(`${baseUrl}/properties/list?locationExternalIDs=${locationExternalIDs}&purpose=${purpose}&hitsPerPage=25&page=0&lang=en&sort=${sort}&rentFrequency=${rentFrequency}&categoryExternalID=${categoryExternalIDs}&minPrice=${minPrice}&maxPrice=${maxPrice}&areaMin=${areaMin}&areaMax=${areaMax}&roomsMin=${roomsMin}&roomsMax=${roomsMax}&bathsMin=${bathsMin}&bathsMax=${bathsMax}&furnishingStatus=${furnishingStatus}&hasVideo=${hasVideo}&hasFloorPlan=${hasFloorPlan}&hasPanorama=${hasPanorama}`)
   return {
     props: {
       properties: properties?.hits,
-    //   propertiesForRent:propertyForRent?.hits || null
+    //   propertesForRent:propertyForRent?.hits || null
     }
   }
 }

@@ -8,6 +8,7 @@ import millify from 'millify';
 import Default from '../assests/default.png'
 
 const Property = ({ property: { coverPhoto, price, rentFrequency, rooms, title, baths, area, agency, isVerified, externalID } }) => {
+ 
     return (
      
       <Link href={`/property/${externalID}`} passHref>
