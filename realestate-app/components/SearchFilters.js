@@ -13,8 +13,9 @@ const SearchFilters = () => {
         const { query } = router;
     
         const values = getFilterValues(filterValue);
-        // console.log(values);
+        const name =Object.keys(filterValue)[0];
         values.map((item) => {
+            if(item.name === name )
             query[item.name] = item.value;
         })
         // console.log();

@@ -11,7 +11,7 @@ const Property = ({ property: { coverPhoto, price, rentFrequency, rooms, title, 
  
     return (
      
-      <Link href={`/property/${externalID}`} passHref>
+      <Link href={`/property/${encodeURIComponent(externalID)}`} passHref>
             <Flex flexWrap='wrap' boxShadow='dark-lg' maxW="390px" m='3' borderRadius="lg"
                 _hover={{
                     boxShadow: 'lg',
