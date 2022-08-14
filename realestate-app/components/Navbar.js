@@ -3,6 +3,7 @@ import { Menu, MenuButton, MenuList, MenuItem, IconButton, Flex, Box, Spacer } f
 import { FcMenu, FcHome, FcAbout } from 'react-icons/fc';
 import { BsSearch } from 'react-icons/bs';
 import { FiKey } from 'react-icons/fi';
+import { MdOutlineRealEstateAgent, MdSupportAgent } from 'react-icons/md';
 
 
 const Navbar = () => (
@@ -26,6 +27,9 @@ const Navbar = () => (
                     </Link>
                      <Link href='/search?purpose=for-rent' passHref>
                     <MenuItem icon={<FiKey/>}>Rent Property</MenuItem>
+                    </Link>
+                     <Link href='/agency' passHref>
+                    <MenuItem icon={<MdOutlineRealEstateAgent />}>Agencies</MenuItem>
                     </Link>
                 </MenuList>    
             </Menu>

@@ -8,6 +8,7 @@ import millify from 'millify';
 import Default from '../assests/default.png'
 
 const Property = ({ property: { coverPhoto, price, rentFrequency, rooms, title, baths, area, agency, isVerified, externalID } }) => {
+    // {console.log(encodeURIComponent(externalID))}
  
     return (
      
