@@ -45,7 +45,7 @@ const Agency = ({ agency,allAgencies }) => {
                               </Link>
                           </List>
                       ))}
-              </Box>}
+              </Box>} 
               <Flex m='20px' flexWrap='wrap'  gap={5} alignItems='center' justifyContent='center'>
                   {allAgencies?.map(({ logo: { url }, product, name,id }) => (
                          <Link href={`/agencyname/${name.split(' ').join('').trim().substr(0,2)}+${id}`} passHref>
