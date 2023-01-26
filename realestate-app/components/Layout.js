@@ -9,7 +9,8 @@ export default function Layout({ children }) {
           <Head>
           <title>Real Estate</title>
           </Head>
-          <Box maxWidth='1280px' m='auto'>
+          <Box maxWidth='1450px' m=' 0 auto'>
+          <Box m='0 2rem'>
               <header>
                 <Navbar/> 
               </header>
@@ -17,6 +18,7 @@ export default function Layout({ children }) {
               <footer>
                 <Footer/> 
               </footer>
+            </Box>
           </Box>
    
     </>
