@@ -16,7 +16,8 @@ const Agency = ({ agency,allAgencies }) => {
     useEffect(() => {
         router.query['agent'] = input
         // console.log(router.query.agent)
-        router.replace({pathname:router.pathname,query:router.query});
+        router.replace({ pathname: router.pathname, query: router.query });
+        
         // console.log(inputRef.current);
     },[input])
     
@@ -34,7 +35,7 @@ const Agency = ({ agency,allAgencies }) => {
                   {
                       input.length > 0 &&
                       agencies?.map(({ name, id }) => (
-                          <List spacing={3} key={name}>
+                          <List spacing={3} key={name} placeSelf='start'>
                               <Link href={`/agencyname/${name.split(' ').join('').trim().substr(0, 2)}+${id}`} passHref >
                                   <ListItem sx={{_hover:{textDecoration:'underline',cursor:'pointer'}}}>
                      
@@ -70,7 +71,7 @@ const Agency = ({ agency,allAgencies }) => {
 
 export async function getServerSideProps({query}){ 
     const agency =  query.agent && await fetchApi(`${baseUrl}/agencies/list?query=${query.agent}`) ;
-    const allAgencies = await fetchApi(`${baseUrl}/agencies/list?query=''`);
+    const allAgencies = await fetchApi(`${baseUrl}/agencies/list?query=''&hitsPerPage=10`);
 
     return {
         props: {

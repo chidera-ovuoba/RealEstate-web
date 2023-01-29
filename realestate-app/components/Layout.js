@@ -1,6 +1,6 @@
 
 import Navbar from './Navbar'
-import Footer from './Footer'
+import Footer from '../sections/Footer'
 import Head from 'next/head';
 import { Box } from '@chakra-ui/react';
 export default function Layout({ children }) {

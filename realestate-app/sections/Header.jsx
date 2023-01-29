@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import bannerImg from '../assests/1.png'
+import bannerImg from '../assests/2.png'
 import { Flex, Box, Text, Button, Heading, Center } from '@chakra-ui/react';
 import Image from 'next/image';
 import { styles } from '../pages/_app';
