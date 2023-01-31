@@ -7,17 +7,17 @@ import { FaRegEnvelope } from 'react-icons/fa';
 
 const contactDataDetails = [
     {
-        icon: [<ImLocation2/>],
+        icon: [<ImLocation2 key={'1'}/>],
         title: 'Visit Us',
         desc:'EstateMongar,Shingashina district,Wall Maria,Paradis island'
     },
     {
-        icon: [<MdCall/>],
+        icon: [<MdCall key={'2'}/>],
         title: 'Call Us',
         desc:'+234 234 557 4567  +234 234 557 4568'
     },
     {
-        icon: [<FaRegEnvelope/>],
+        icon: [<FaRegEnvelope key={'3'}/>],
         title: 'Email Us',
         desc:'support@gmail.com ovuobachidera18@gmail.com'
     },
@@ -101,9 +101,9 @@ const contact = () => {
         <Flex sx={contactStyle.main}>
          <Grid sx={contactStyle.details}>
           {
-            contactDataDetails.map(({desc,icon,title})=>(
-            <Flex sx={contactStyle.detailRow}>
-            <Box as='span'>{icon?.[0]}</Box>
+            contactDataDetails.map(({desc,icon,title},i)=>(
+            <Flex sx={contactStyle.detailRow} key={i}>
+            <Box as='span'>{icon}</Box>
             <Box>
             <Heading as='h4'>{title}</Heading>
             <Text>{desc}</Text>

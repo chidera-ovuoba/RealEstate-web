@@ -6,7 +6,8 @@ import WhyChooseUs from '../sections/WhyChooseUs';
 import Testimonial from '../sections/Testimonial';
 
 
-export default function Home({ propertiesForRent, propertiesForSale }) {
+
+export default function Home() {
 
 
  
@@ -14,7 +15,7 @@ export default function Home({ propertiesForRent, propertiesForSale }) {
     <>
     <Header/>
     <Services />
-    <ExploreSection propertiesForRent={propertiesForRent} propertiesForSale={propertiesForSale} />
+    <ExploreSection />
     <Stats/>
     <WhyChooseUs/>
     <Testimonial/>

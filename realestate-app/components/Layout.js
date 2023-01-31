@@ -1,4 +1,3 @@
-
 import Navbar from './Navbar'
 import Footer from '../sections/Footer'
 import Head from 'next/head';

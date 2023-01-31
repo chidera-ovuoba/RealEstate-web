@@ -19,7 +19,7 @@ const Agency = ({ agency,allAgencies }) => {
         router.replace({ pathname: router.pathname, query: router.query });
         
         // console.log(inputRef.current);
-    },[input])
+    },[input,router])
     
     useEffect(() => {
         agency?.length > 4 ? setAgencies(agency.slice(0, 4)) : setAgencies(agency)
@@ -49,9 +49,9 @@ const Agency = ({ agency,allAgencies }) => {
               </Box>} 
               <Flex m='20px' flexWrap='wrap'  gap={5} alignItems='center' justifyContent='center'>
                   {allAgencies?.map(({ logo: { url }, product, name,id }) => (
-                         <Link href={`/agencyname/${name.split(' ').join('').trim().substr(0,2)}+${id}`} passHref>
+                         <Link href={`/agencyname/${name.split(' ').join('').trim().substr(0,2)}+${id}`} passHref key={id}>
                           <Flex alignItems='center' justifyContent='space-around' flexDirection='column' w='200px'>
-                             <Image boxSize='160px' src={url} paddingBottom='10px' objectFit='contain' fallbackSrc='https://tenderpixel.com/wp-content/themes/tenderpixel_wp/images/loading_5.gif' />
+                             <Image boxSize='160px' src={url} paddingBottom='10px' objectFit='contain' fallbackSrc='https://tenderpixel.com/wp-content/themes/tenderpixel_wp/images/loading_5.gif' alt='' />
                                
                           <Text fontSize='15px' color='tomato' noOfLines={[1, 2, 3]} textAlign='center' >
                               {name}
