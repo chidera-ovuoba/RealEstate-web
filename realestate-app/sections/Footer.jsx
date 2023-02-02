@@ -152,7 +152,7 @@ const Footer = () => {
     <Text as='p' sx={footerStyles.footer_p}>+(21) 255 989 8088</Text>
     <Flex sx={footerStyles.footer_social_container}>
     {
-      footerSocial.map((item)=>(<Box as='span'>{item}</Box>))
+      footerSocial.map((item,i)=>(<Box as='span' key={i}>{item}</Box>))
     }
     </Flex>
     </Box>

@@ -12,10 +12,15 @@ const Search = ({propertiesAll}) => {
     const [properties, setProperties] = useState(propertiesAll?.length > 9 ? propertiesAll?.filter((item,i)=> i < 9):propertiesAll);
     const [showMore, setShowMore] = useState(false);
     const showRef = useRef(null);
+    const [page, setPage] = useState(1)
+
+
     const changeShowOrLess = () => {
         setShowMore((prev) => !prev);
-        showMore ? setProperties(propertiesAll) : setProperties(propertiesAll?.filter((item, i) => i < 9));
+        showMore ?  setProperties(propertiesAll?.filter((item, i) => i < 9)) : setProperties(propertiesAll) ;
     }
+
+
     useEffect(() => {
         showRef.current.scrollIntoView(false)
 
@@ -53,12 +58,11 @@ const Search = ({propertiesAll}) => {
                 }
                 <Text ref={showRef} fontSize='2xl' sx={{'&:hover':{cursor:'pointer',color:'#3a8dff'},pt:'4rem',justifySelf:'start'}} onClick={changeShowOrLess}>{showMore ?'show less':'show more'}</Text>
             </Box>
-           
         </Box>
     )
 }
 
-export async function getStaticProps({ query }) {
+export async function getServerProps({ query }) {
     const purpose = query?.purpose || 'for-rent';
     const rentFrequency = query?.rentFrequency || 'yearly';
     const minPrice = query?.minPrice || '';

@@ -20,7 +20,7 @@ const ExploreSection = ({ propertiesForRent, propertiesForSale }) => {
 // }
   return (
       <>
-      <Center py='5rem' flexDirection='column' >
+      <Center py='5rem' flexDirection='column' id='ExploreSection'>
               <Flex justifyContent='center' alignItems='center' textAlign='center' flexDirection='column' mb='3rem'>
                   <Text sx={styles.subHeading}>EXPLORE</Text>
                    <Heading sx={styles.Heading}>Explore Property By Preferences</Heading>
@@ -44,26 +44,6 @@ const ExploreSection = ({ propertiesForRent, propertiesForSale }) => {
             propertiesForRent?.map((property) => <Property key={property.id} property={property} />)
         }
       </Flex>
-     {/* <Flex m='4' alignItems='center' justifyContent='center' gap='2'>
-        <Button onClick={()=>{
-          setPageNum(page < 3 ? page : page - 1)
-  
-        }}>{page < 3 ? page + 1:page}</Button>
-        <Button onClick={() =>{
-           setPageNum(page < 3 ? page + 1 : page)
-    
-          }}>{page < 3 ? page + 2: page + 1}</Button>
-        <Button onClick={() =>{
-           setPageNum(page < 3 ? page + 2: page + 1)
-    
-          }}>{page < 3 ? page + 3: page + 2}</Button>
-          ....
-          <Button onClick={()=>{
-            setPageNum(1999)
-            
-          }}>2000</Button>
-          
-        </Flex>*/}
         
         <Banner
         purpose='BUY A HOME'

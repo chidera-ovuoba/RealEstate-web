@@ -70,7 +70,7 @@ const WhyChooseUs = () => {
          <Center sx={WCUStyles.flex}>
          {
              whyChooseUsData.map(({title,icon}) => (
-            <Flex sx={WCUStyles.cardContainer}>
+            <Flex sx={WCUStyles.cardContainer} key={title}>
             <Grid as='span' sx={WCUStyles.icon_container}>{icon}</Grid>
             <Box>
             <Heading sx={WCUStyles.cardHeading}>{title}</Heading>

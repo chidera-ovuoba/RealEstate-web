@@ -37,7 +37,7 @@ const stylesCard = {
 
 const ServiceCard = ({item}) => {
   return (
-    <Grid sx={stylesCard.serviceCard} key={item} placeItems='center'>
+    <Grid sx={stylesCard.serviceCard}  placeItems='center'>
       <Center as='span' sx={stylesCard.designIconContainer}></Center>
       <Heading sx={styles.Heading} style={{fontSize:'30px'}}>{item}</Heading>
       <Text sx={styles.p} style={{margin:0}}>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam libero dolorum pariatur</Text>

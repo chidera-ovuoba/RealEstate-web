@@ -1,5 +1,5 @@
 import { Box, Center, Flex, Grid, Heading, Text } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { styles } from '../pages/_app';
 import team1 from '../assests/team1.jpg'
 import team2 from '../assests/team2.jpg'
@@ -48,7 +48,7 @@ const testimonialData = [
     {
      img: team1,
      id:'team_1',
-     heading:'Simply What I Call Travelling in Style',
+     heading:'Simply What I Call luxury in Style',
      desc:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus aut reiciendis, eaque suscipit neque assumenda provident recusandae non quidem nesciunt iste aperiam, cumque alias perferendis!',
      jobTitle:'Web Developer',
      name:'Mikasa akerman'
@@ -75,20 +75,42 @@ const testimonialData = [
 
 const Testimonial = () => {
   const [cardId, setCardId] = useState('team_1')
+  const testimonialRef = useRef(null);
+  const [buttons, setButtons] = useState(null);
     const handleSliderId = (id) => {
-        setCardId(id)
+      setCardId(id)
     }
     useEffect(() => {
-     document.getElementById(`${cardId}`).scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" })
+     document.getElementById(`${cardId}`)?.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" })
     }, [cardId])
+
+  useEffect(() => {
+       const observer = new IntersectionObserver((entry) => {
+        if (!entry.isIntersecting) {
+          const active =  entry[0].target.getAttribute('id');
+          setCardId(entry.length > 2 ? buttons:active);
+        }
+      }, { threshold: 1, root: testimonialRef.current });
+      [...testimonialRef.current.children].map((item) => (observer.observe(item)));
+    document.querySelectorAll('.buttons_testimonial').forEach((item) => item.addEventListener('click', (e) => {
+        setButtons(e.target.getAttribute('id'))
+      }))
+      
+      return () => {
+        [...testimonialRef.current.children].map((item) => (observer.unobserve(item)));
+        document.querySelectorAll('.buttons_testimonial').forEach((item) => item.removeEventListener('click', (e) => {
+        setButtons(e.target.getAttribute('id'))
+      }))
+        }
+    }, [buttons])
   return (
     <>
-     <Center py='5rem' flexDirection='column' style={styles.section_main}  >
+     <Center py='5rem' flexDirection='column' sx={styles.section_main}  >
     <Flex justifyContent='center' alignItems='center' textAlign='center' flexDirection='column' mb='3rem'>
         <Text sx={styles.subHeading}>TESTIMONIAL</Text>
         <Heading sx={styles.Heading}>What People Say About Us</Heading>
         </Flex>
-        <Flex sx={testimonialStyles.testimonial_container}>
+        <Flex sx={testimonialStyles.testimonial_container} ref={testimonialRef}>
         {testimonialData.map(({desc,heading,img,jobTitle,name,id})=>(
             <Flex sx={testimonialStyles.testimonialCard} width='inherit' key={name} id={id}>
             <Grid sx={testimonialStyles.testimonialCard} gap='2rem' width='100vw' >
@@ -106,7 +128,7 @@ const Testimonial = () => {
         </Flex>
         ))} 
      </Flex>
-     <Flex sx={testimonialStyles.sliderContainer}>{testimonialData.map(({name,id})=>(<Box sx={testimonialStyles.sliderButton} key={name} onClick={()=>handleSliderId(id)} style={{background:`${cardId === id ? '#3a86ff':'' }`}}></Box>))}</Flex>
+     <Flex sx={testimonialStyles.sliderContainer}>{testimonialData.map(({name,id})=>(<Box sx={testimonialStyles.sliderButton} key={name} onClick={()=>handleSliderId(id)} style={{background:`${((cardId || 'team_1')=== id) ? '#3a86ff':'' }`}} className='buttons_testimonial' id={id}></Box>))}</Flex>
     </Center>
     </>
   )

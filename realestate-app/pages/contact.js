@@ -1,5 +1,4 @@
 import { Box, Button, Center, Flex, FormControl, Grid, Heading, Input, Text, Textarea } from '@chakra-ui/react'
-import React from 'react'
 import { styles } from './_app';
 import { ImLocation2 } from 'react-icons/im';
 import { MdCall } from 'react-icons/md';
@@ -27,6 +26,7 @@ const contactStyle = {
     details: {
         gap: '2rem',
         minWidth: '400px',
+        placeSelf:'start',
         '@media (width < 500px)': {
             minWidth: '290px',
         }

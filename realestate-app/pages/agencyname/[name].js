@@ -5,15 +5,15 @@ import { fetchApi, baseUrl } from '../../../utils/fetchApi';
 import { MdCheckCircle } from 'react-icons/md';
 
 const AgencyDetails = ({ agencyDetails,idnum }) => {
-    const {logo:{url},agents,agentsCount,name,speciality_codes,stats:{adsSaleCount,adsRentCount,purposes,categoryTypes,serviceAreas}}  = agencyDetails.filter(({ id }) => id == idnum)[0]
+    const {logo:{url},agents,agentsCount,name,speciality_codes,stats:{adsSaleCount,adsRentCount,purposes,categoryTypes,serviceAreas}}  = agencyDetails[0]
     
-        return (<Box Box maxWidth = '1000px' margin = 'auto' p = '6' >
-            {url && <Image sx={{ width: '100vw', height: '35vh' }} src={url} paddingBottom='10px' objectFit='contain' fallbackSrc='https://tenderpixel.com/wp-content/themes/tenderpixel_wp/images/loading_5.gif' alt='' />}
+        return (<Box maxWidth = '1000px' margin = 'auto' p = '6' >
+            {url && <Image sx={{ width: '100vw', height: '35vh' }} src={url} paddingBottom='10px' objectFit='contain' alt='' />}
             <Text fontSize='5xl' fontWeight="black" textAlign='center' marginBottom='3'>{name}</Text>
             <Box w='full' p='6'>
                 {agents.length > 0 && 
                     <>
-                    <Text fontWeight='black'  fontSize='2xl' marginTop='5' marginBottom='2'>Agents({agentsCount})</Text>
+                    <Text fontWeight='black' fontSize='2xl' marginTop='5' marginBottom='2'>Agents {agentsCount}</Text>
                 <Grid gap={3} marginTop='2' templateRows={`repeat(${agents.length > 10 ? 10:agents.length},1fr)`} templateColumns={`repeat(${agents.length > 10 ? 3:''},1fr)`} mb='20px'>
                         {agents.map(({ name,i }) => (
                             <GridItem key={i}><Icon as={MdCheckCircle} color='green.500' />{name}</GridItem>
@@ -111,14 +111,11 @@ const AgencyDetails = ({ agencyDetails,idnum }) => {
 export default AgencyDetails;
 
 export async function getServerSideProps({ params: { name } }) {
-    const name1 = name.split('+')[0]
-    const id = name.split('+')[1]
-    const agencyDetails = await fetchApi(`${baseUrl}/agencies/list?query=${name1}`);
+    const agencyDetails = await fetchApi(`${baseUrl}/agencies/list?query=${name}`);
 
     return {
         props: {
             agencyDetails: agencyDetails?.hits,
-            idnum:id
         }
     }
 }

@@ -1,5 +1,4 @@
-import { Flex, Box, Text, Button, Heading, Center } from '@chakra-ui/react';
-import Image from 'next/image';
+import { Flex, Box, Text, Heading, Center } from '@chakra-ui/react';
 import ServiceCard from '../components/ServiceCard';
 import { styles } from '../pages/_app';
 
@@ -15,7 +14,7 @@ const Services = () => {
               </Flex>
               <Flex flexWrap='wrap' justifyContent='center' alignItems='center' gap='2rem' mt='2rem'>
                   {
-                      serviceData.map((item) => < ServiceCard item={item} />)
+                      serviceData.map((item) => < ServiceCard item={item} key={item} />)
                   }
               </Flex>
           </Center>

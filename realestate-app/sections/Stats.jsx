@@ -1,4 +1,4 @@
-import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/react'
+import { Box, Grid, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import { styles } from '../pages/_app'
 
@@ -35,7 +35,7 @@ const Stats = () => {
           <Grid  gap='1rem' style={styles.section_main} sx={statsStyle.grid}>
            {
             StatsData.map(({value,category}) => (
-                <Box textAlign='center'>
+                <Box textAlign='center' key={category}>
                 <Heading sx={styles.Heading}>{value}+</Heading>
                 <Text sx={styles.p}>{category}</Text>
                 </Box>
