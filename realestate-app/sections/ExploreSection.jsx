@@ -1,23 +1,13 @@
 import { Center, Flex, Heading, Text } from '@chakra-ui/react'
 import React from 'react'
 import Banner from '../components/Banner'
-import Property from '../components/Property'
 import { styles } from '../pages/_app';
 import rentHome from '../assests/g3.jpg';
 import saleHome from '../assests/g5.jpg';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 
-const ExploreSection = ({ propertiesForRent, propertiesForSale }) => {
-//       const router = useRouter();
-//   const [page, setPage] = useState(router.query.page);
-//   function setPageNum(num) {
-//     const { query } = router;
-//     // console.log(query)
-//     query.page = num;
-//   // console.log(router.);
-//     router.replace({ pathname: router.pathname,query});
-// }
+
+const ExploreSection = () => {
+
   return (
       <>
       <Center py='5rem' flexDirection='column' id='ExploreSection'>
@@ -38,12 +28,7 @@ const ExploreSection = ({ propertiesForRent, propertiesForSale }) => {
           }}
        imageUrl={rentHome}
         />
-    
-        <Flex flexWrap='wrap' alignItems='center' justifyContent='center' >
-        {
-            propertiesForRent?.map((property) => <Property key={property.id} property={property} />)
-        }
-      </Flex>
+
         
         <Banner
         purpose='BUY A HOME'
@@ -58,12 +43,7 @@ const ExploreSection = ({ propertiesForRent, propertiesForSale }) => {
           }}
           imageUrl={saleHome}
         />
-   
-          <Flex flexWrap='wrap' alignItems='center' justifyContent='center' >
-        {
-            propertiesForSale?.map((property) => <Property key={property.id} property={property} />)
-        }
-        </Flex>
+
         </Center>      
       </>
   )
