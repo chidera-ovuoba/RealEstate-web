@@ -6,7 +6,7 @@ import { BsFilter } from "react-icons/bs";
 import SearchFilters from "../components/SearchFilters";
 import Property from "../components/Property";
 import Default from '../assests/default.png'
-import { baseUrl, fetchApi } from "../../utils/fetchApi";
+import { baseUrl, fetchApi } from "../utils/fetchApi";
 const Search = ({propertiesAll}) => {
     const router = useRouter();
     const [properties, setProperties] = useState(propertiesAll?.length > 9 ? propertiesAll?.filter((item,i)=> i < 9):propertiesAll);

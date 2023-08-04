@@ -1,49 +1,11 @@
-import React, { useEffect, useState,useRef} from 'react'
+import React from 'react'
 import { Badge, Box, Flex, HStack, Icon, Input, Text } from '@chakra-ui/react'
-import { baseUrl, fetchApi } from '../../utils/fetchApi'
-import {List,ListItem,ListIcon} from '@chakra-ui/react'
-import { useRouter } from 'next/router';
+import { baseUrl, fetchApi } from '../utils/fetchApi';
 import Image from 'next/image';
-import { MdOutlineRealEstateAgent } from 'react-icons/md'
 import { AiOutlineDollar } from 'react-icons/ai';
 import Link from 'next/link';
-const Agency = ({ agency,allAgencies }) => {
-    const [input, setInput] = useState('');
-    // const router = useRouter();
-    // const [agencies, setAgencies] = useState([]);
-    
-    // console.log(agency);
-    // useEffect(() => {
-    //     router.query['agent'] = input
-    //     // console.log(router.query.agent)
-    //     router.replace({ pathname: router.pathname, query: router.query });
-        
-    //     // console.log(inputRef.current);
-    // },[input])
-    
-    // useEffect(() => {
-    //     agency?.length > 4 ? setAgencies(agency.slice(0, 4)) : setAgencies(agency)
-    // },[input,agency])
-    // <Input variant='filled' htmlSize={50} width='auto' mt='20px' mb='20px' 
-    //  value={input}
-    //     onChange={(e)=>setInput(e.target.value)}
-    // />
-    // { (agencies && input) && <Box display='grid' gap={3} placeItems='center' p='9' sx={{ background: 'green.100' }}>
-    //     {
-    //         input.length > 0 &&
-    //         agencies?.map(({ name, id }) => (
-    //             <List spacing={3} key={name} placeSelf='start'>
-    //                 <Link href={`/agencyname/${name.split(' ').join('').trim().substr(0, 2)}+${id}`} passHref >
-    //                     <ListItem sx={{_hover:{textDecoration:'underline',cursor:'pointer'}}}>
-           
-    //                         <ListIcon as={MdOutlineRealEstateAgent} color='green.500' />
-    //                         {name}
-      
-    //                     </ListItem>
-    //                 </Link>
-    //             </List>
-    //         ))}
-    // </Box>} 
+const Agency = ({ allAgencies }) => {
+ 
   return (
       <>
           <Box display='grid' placeItems='center' mb='50px'>
@@ -70,12 +32,10 @@ const Agency = ({ agency,allAgencies }) => {
 }
 
 export async function getServerSideProps(){ 
-    // const agency =  query.agent && await fetchApi(`${baseUrl}/agencies/list?query=${query.agent}`) ;
-    const allAgencies = await fetchApi(`${baseUrl}/agencies/list?query=''&hitsPerPage=9`);
+    const allAgencies = await fetchApi(`${baseUrl}/agencies/list?query=''&hitsPerPage=5`);
 
     return {
         props: {
-            // agency: agency?.hits || null,
             allAgencies: allAgencies?.hits
         }
       

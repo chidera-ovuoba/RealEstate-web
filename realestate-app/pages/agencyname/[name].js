@@ -1,7 +1,7 @@
 import { Box, Flex,  Text,Image, Grid, Icon, GridItem } from '@chakra-ui/react';
 import { MdOutlineHomeRepairService} from 'react-icons/md';
 import { GiStarMedal,GiHouse } from 'react-icons/gi';
-import { fetchApi, baseUrl } from '../../../utils/fetchApi';
+import { fetchApi, baseUrl } from '../../utils/fetchApi';
 import { MdCheckCircle } from 'react-icons/md';
 
 const AgencyDetails = ({ agencyDetails,idnum }) => {

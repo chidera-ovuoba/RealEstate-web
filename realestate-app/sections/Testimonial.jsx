@@ -75,34 +75,12 @@ const testimonialData = [
 
 const Testimonial = () => {
   const [cardId, setCardId] = useState('team_1')
-  const testimonialRef = useRef(null);
-  const [buttons, setButtons] = useState(null);
-    const handleSliderId = (id) => {
-      setCardId(id)
-    }
-    useEffect(() => {
-     document.getElementById(`${cardId}`)?.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" })
-    }, [cardId])
 
-  useEffect(() => {
-       const observer = new IntersectionObserver((entry) => {
-        if (!entry.isIntersecting) {
-          const active =  entry[0].target.getAttribute('id');
-          setCardId(entry.length > 2 ? buttons:active);
-        }
-      }, { threshold: 1, root: testimonialRef.current });
-      [...testimonialRef.current.children].map((item) => (observer.observe(item)));
-    document.querySelectorAll('.buttons_testimonial').forEach((item) => item.addEventListener('click', (e) => {
-        setButtons(e.target.getAttribute('id'))
-      }))
-      
-      return () => {
-        [...testimonialRef.current.children].map((item) => (observer.unobserve(item)));
-        document.querySelectorAll('.buttons_testimonial').forEach((item) => item.removeEventListener('click', (e) => {
-        setButtons(e.target.getAttribute('id'))
-      }))
-        }
-    }, [buttons])
+  const handleSliderId = (id) => {
+      setCardId(id)
+      document.getElementById(`${id}`)?.scrollIntoView({ behavior: "auto", block: "start", inline: "nearest" })
+    }
+    
   return (
     <>
      <Center py='5rem' flexDirection='column' sx={styles.section_main}  >
@@ -110,7 +88,7 @@ const Testimonial = () => {
         <Text sx={styles.subHeading}>TESTIMONIAL</Text>
         <Heading sx={styles.Heading}>What People Say About Us</Heading>
         </Flex>
-        <Flex sx={testimonialStyles.testimonial_container} ref={testimonialRef}>
+        <Flex sx={testimonialStyles.testimonial_container} >
         {testimonialData.map(({desc,heading,img,jobTitle,name,id})=>(
             <Flex sx={testimonialStyles.testimonialCard} width='inherit' key={name} id={id}>
             <Grid sx={testimonialStyles.testimonialCard} gap='2rem' width='100vw' >

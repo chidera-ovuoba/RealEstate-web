@@ -3,7 +3,7 @@ import { Flex, Select, Box, Text, Input, Spinner, Icon, Button, Center } from '@
 import { useRouter } from "next/router";
 import { MdCancel } from 'react-icons/md';
 import Image from "next/image";
-import { filterData,getFilterValues } from "../../utils/filterData";
+import { filterData,getFilterValues } from "../utils/filterData";
 import { styles } from "../pages/_app";
 import { FcSearch } from "react-icons/fc";
 const SearchFilters = () => {
